@@ -1,0 +1,26 @@
+#map {
+    height: 100vh;
+    z-index: 1; 
+    position: relative;
+}
+.sidebar {
+    width: 800px;
+    height: 100vh;
+    background: #f4f4f4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 2; 
+}
+.close-btn {
+    cursor: pointer;
+    padding: 5px;
+    background: #ccc;
+    border-radius: 3px;
+    text-align: center;
+    width: 50px;
+}

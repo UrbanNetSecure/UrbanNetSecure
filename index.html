@@ -1,51 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Map Page</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map { height: 100vh; }
-        .sidebar { width: 300px; background: #f4f4f4; position: absolute; right: 0; top: 0; bottom: 0; display: none; }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div id="map"></div>
     <div class="sidebar" id="sidebar">
-        <!-- 시각화 그래프를 표시할 공간 -->
-        <div id="chart"></div>
+        <div class="close-btn" id="closeBtn">Close</div>
+        <h2>Data Visualization</h2>
+        <canvas id="chart"></canvas>
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var map = L.map('map').setView([35.168396, 129.133445], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-
-        var marker = L.marker([35.168396, 129.133445]).addTo(map);
-
-        marker.on('click', function() {
-            document.getElementById('sidebar').style.display = 'block';
-            showChart();
-        });
-
-        function showChart() {
-            var ctx = document.getElementById('chart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                    datasets: [{
-                        label: 'Data',
-                        data: [12, 19, 3, 5, 2, 3, 7],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                }
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
