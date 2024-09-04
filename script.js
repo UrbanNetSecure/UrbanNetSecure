@@ -1,11 +1,30 @@
 const bexco = [35.168396, 129.133445];
 
+//아이콘 설정
+const iconSize = [80,80]
+const iconAnchor = [40, 40]
+
+
+// 기본 아이콘
+var defaultIcon = L.icon({
+    iconUrl: 'img/green_ping.png', 
+    iconSize: iconSize, // 아이콘 크기
+    iconAnchor: iconAnchor // 아이콘의 앵커 지점
+});
+
+//공격 들어올 때 사용되는 아이콘
+var alertIcon = L.icon({
+    iconUrl: 'img/red_ping.png', 
+    iconSize: iconSize,
+    iconAnchor: iconAnchor
+});
+
 var map = L.map('map').setView(bexco, 15);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-var marker = L.marker(bexco).addTo(map);
+var marker = L.marker(bexco, {icon : defaultIcon}).addTo(map);
 
 var chart; // 차트 객체를 전역 변수로 선언
 
@@ -42,7 +61,7 @@ function showChart() {
         options: {
             animation: {
                 duration: 1000, // 1초 동안의 애니메이션 설정
-                easing: 'easeInOutQuad' // 애니메이션 이징 옵션
+                easing: 'easeInOutQuad' // 애니메이션 옵션
             }
         }
     });
