@@ -18,7 +18,7 @@ var alertIcon = L.icon({
     iconAnchor: iconAnchor
 });
 
-////////////////////////////////////////////////////////////////
+//===============================================================//
 //맵 생성
 
 var map = L.map('map').setView(bexco, 15);
@@ -30,18 +30,18 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var marker = L.marker(bexco, {icon: defaultIcon}).addTo(map);
 
 
-////////////////////////////////////////////////////////////////
-//시각화 차트 
+//===============================================================//
+//시각화 차트 변수
 
 var line_chart;
-var subtitle_chart;
-////////////////////////////////////////////////////////////////
-
+var doughnut_chart;
+//===============================================================//
 // map과 chart 폴링 변수
+
 var chartUpdateInterval;
 var mapUpdateInterval; 
 
-////////////////////////////////////////////////////////////////
+//===============================================================//
 
 // 지도의 실시간 업데이트 시작
 function startMapUpdate() {
@@ -65,6 +65,9 @@ marker.on('click', function () {
     // 시각화 그래프를 표시
     if (!line_chart) {
         showLineChart();
+    }
+    if (!doughnut_chart){
+        showdoughnutChart();
     }
     startChartUpdate(); // 차트 실시간 업데이트 시작
 });
@@ -98,19 +101,33 @@ function showLineChart() {
     });
 }
 
-function showSubtitleChart(){
-    var ctx = document.getElementById('subtitle_chart').getContext('2d');
-
-    subtitle_chart = new Chart(ctx, {
-        type: 'line',
+function showdoughnutChart(){
+    var ctx = document.getElementById('doughnut_chart').getContext('2d');
+    var data = {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [0, 0, 0],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+        hoverOffset: 4,
+        }]
+    };
+    
+    doughnut_chart = new Chart(ctx, {
+        type: 'doughnut',
         data: data,
         options: {
-            plugins: {
-                subtitle: {
-                    display: true,
-                    text: 'Custom Chart Subtitle'
-                }
-            }
+            responsive: false,  // 반응형 비활성화
+            maintainAspectRatio: false, // 종횡비 유지 비활성화
+
         }
     });
     
@@ -126,7 +143,20 @@ function updateChartData() {
     var newData = generateRandomData(); // 새로운 데이터를 생성
     line_chart.data.datasets[0].data = newData; // 데이터셋의 데이터를 새로운 데이터로 교체
     line_chart.update(); // 차트를 업데이트하여 변경 사항 반영
+
+    var doughnutNewData = genRandData();
+    doughnut_chart.data.datasets[0].data=doughnutNewData;
+    doughnut_chart.update();
 }
+
+// 초기화 시 지도 업데이트 시작
+startMapUpdate();
+
+
+
+
+/* =================임시 데이터 (시각화 차트 실시간 변경 확인용)==============*/
+
 
 function generateRandomData() {
     // 랜덤 데이터를 생성하는 함수 (예시)
@@ -141,5 +171,11 @@ function generateRandomData() {
     ];
 }
 
-// 초기화 시 지도 업데이트 시작
-startMapUpdate();
+function genRandData(){
+    return [
+        Math.floor(Math.random() * 25),
+        Math.floor(Math.random() * 25),
+        Math.floor(Math.random() * 25)
+    ]
+}
+
