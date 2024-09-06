@@ -12,15 +12,19 @@
     <div class="sidebar" id="sidebar">
         <div class="close-btn" id="closeBtn">Close</div>
 
-        <h2>Data Visualization</h2> <!-- 기기 이름 넣기-->
+        <h2 id="device_name" ></h2> <!-- 기기 이름 넣기-->
         
-        <div class="div_dougnet_chart" >
+        <div>
             <canvas id="doughnut_chart"></canvas>
         </div>
         <canvas id="line_chart"></canvas>
     </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <script src="mapConfig.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="chartConfig.js"></script>
+    
 </body>
 </html>
