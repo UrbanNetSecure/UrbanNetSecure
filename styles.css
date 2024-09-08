@@ -28,8 +28,6 @@ html, body {
     padding: 20px;
 }
 
-
-
 .close-btn {
     cursor: pointer;
     padding: 5px;
@@ -38,3 +36,14 @@ html, body {
     text-align: center;
     width: 50px;
 }
+/* 
+#doughnut_chart, #pie_chart {
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+} */
+/* 
+.canvas-wrapper {
+    display: flex;
+    justify-content: space-between;
+} */
