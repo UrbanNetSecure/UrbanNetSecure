@@ -1,7 +1,7 @@
 function onMarkerClick(markerKey) {
     document.getElementById('sidebar').style.display='block';
 
-    var device_name = document.getElementById("device_name");
+    let device_name = document.getElementById("device_name");
     device_name.textContent=markerKey;
 
     // 차트 초기화

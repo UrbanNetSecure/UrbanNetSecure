@@ -1,15 +1,15 @@
-var chartUpdateInterval = null;
-var line_chart = null;
-var doughnut_chart = null;
-var pie_chart = null;
+let chartUpdateInterval = null;
+let line_chart = null;
+let doughnut_chart = null;
+let pie_chart = null;
 
-var defaultLineData = [0, 1, 0, 5, 0, 3, 2];
-var defaultMalLineData = [1, 5, 2, 6, 5, 8, 3];
-var defaultDoughnutData = [1, 2, 3];
-var testLineData = [10,20,30,40,50,60,70];
+let defaultLineData = [0, 1, 0, 5, 0, 3, 2];
+let defaultMalLineData = [1, 5, 2, 6, 5, 8, 3];
+let defaultDoughnutData = [1, 2, 3];
+let testLineData = [10,20,30,40,50,60,70];
 
 
-var deviceData = {
+let deviceData = {
     bexco : {
         lineData : defaultLineData,
         doughnutData : defaultDoughnutData,
@@ -28,9 +28,9 @@ var deviceData = {
 }
 
 function showdoughnutChart(markerKey){
-    var ctx = document.getElementById('doughnut_chart').getContext('2d');
+    let ctx = document.getElementById('doughnut_chart').getContext('2d');
 
-    var data = {
+    let data = {
         labels: [
           'Red',
           'Blue',
@@ -60,13 +60,13 @@ function showdoughnutChart(markerKey){
 }
 
 function showPieChart(markerKey) {
-    var ctx = document.getElementById('pie_chart').getContext('2d');
+    let ctx = document.getElementById('pie_chart').getContext('2d');
 
-    var data = {
+    let data = {
         labels: ['Red', 'Blue', 'Yellow'],
         datasets: [{
             label: 'Pie Chart Data',
-            data: deviceData[markerKey].doughnutData, // 도넛 차트와 동일한 데이터를 사용
+            data: deviceData[markerKey].doughnutData,
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
@@ -87,9 +87,9 @@ function showPieChart(markerKey) {
 }
 
 function showLineChart(markerKey) {
-    var ctx = document.getElementById('line_chart').getContext('2d');
+    let ctx = document.getElementById('line_chart').getContext('2d');
 
-    var data = {
+    let data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
             {
@@ -126,8 +126,8 @@ function startChartUpdate(markerKey) {
 }
 
 function updateChartData(markerKey) {
-    var newLineData = generateRandomData(); 
-    var newMalLineData = generateRandomData(); 
+    let newLineData = generateRandomData(); 
+    let newMalLineData = generateRandomData(); 
     deviceData[markerKey].lineData = newLineData; 
     deviceData[markerKey].malLineData = newMalLineData; 
 
@@ -135,7 +135,7 @@ function updateChartData(markerKey) {
     line_chart.data.datasets[1].data = deviceData[markerKey].malLineData; 
     line_chart.update();
 
-    var newDoughnutData = genRandData(); 
+    let newDoughnutData = genRandData(); 
     deviceData[markerKey].doughnutData = newDoughnutData; 
     
     doughnut_chart.data.datasets[0].data = deviceData[markerKey].doughnutData;

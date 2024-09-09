@@ -9,32 +9,32 @@ const iconSize = [80, 80];
 const iconAnchor = [40, 80];
 
 // 기본 아이콘
-var defaultIcon = L.icon({
+let defaultIcon = L.icon({
     iconUrl: 'img/green_ping.png',
     iconSize: iconSize, 
     iconAnchor: iconAnchor 
 });
 
 // 공격 들어올 때 사용되는 아이콘
-var alertIcon = L.icon({
+let alertIcon = L.icon({
     iconUrl: 'img/red_ping.png',
     iconSize: iconSize,
     iconAnchor: iconAnchor
 });
 
 //맵 생성
-var map = L.map('map').setView(bexco, 15);
+let map = L.map('map').setView(bexco, 15);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, minZoom: 14
 }).addTo(map);
 
 //마커 생성
-var bexcoMarker = L.marker(bexco, {icon: defaultIcon}).addTo(map);
-var test1Marker = L.marker(test1, {icon: defaultIcon}).addTo(map);
-var test2Marker = L.marker(test2, {icon: defaultIcon}).addTo(map);
+let bexcoMarker = L.marker(bexco, {icon: defaultIcon}).addTo(map);
+let test1Marker = L.marker(test1, {icon: defaultIcon}).addTo(map);
+let test2Marker = L.marker(test2, {icon: defaultIcon}).addTo(map);
 
 // 지도의 실시간 업데이트
-var mapUpdateInterval; 
+let mapUpdateInterval; 
 
 function startMapUpdate() {
     mapUpdateInterval = setInterval(function () {
@@ -67,11 +67,11 @@ function updateMap() {
 // }
 
 // function updateChartData() {
-//     var newData = generateRandomData(); // 새로운 데이터를 생성
+//     let newData = generateRandomData(); // 새로운 데이터를 생성
 //     line_chart.data.datasets[0].data = newData; // 데이터셋의 데이터를 새로운 데이터로 교체
 //     line_chart.update(); // 차트를 업데이트하여 변경 사항 반영
 
-//     var doughnutNewData = genRandData();
+//     let doughnutNewData = genRandData();
 //     doughnut_chart.data.datasets[0].data=doughnutNewData;
 //     doughnut_chart.update();
 // }
