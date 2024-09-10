@@ -1,5 +1,5 @@
 let currentMarkerKey = null;
-
+let dataTableInitialized = false;
 
 function onMarkerClick(markerKey) {
     document.getElementById('sidebar').style.display='block';
@@ -70,6 +70,72 @@ document.getElementById('tab1').addEventListener('click', function () {
 
 document.getElementById('tab2').addEventListener('click', function () {
     switchTab('tab2', 'tab-content2');
+    var table = new Tabulator("#example-table", {
+        height:"580px",
+        layout:"fitColumns",
+        pagination:'local',
+        paginationSize: 20,
+        autoResize: true,
+        columns:[
+            {title:"Date", field:"date"},
+            {title:"Serial Number", field:"serial"},
+            {title:"Status", field:"status", sorter:"number"}, 
+            {title:"Type", field: "type", sorter:"string"}
+        
+        ],
+        data: [
+            { date: "1989-02-25", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DOS"},
+            { date: "1989-03-17", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"Brute Force" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 0, type:"DDOS" },
+            { date: "1990-08-12", serial: "AB-32-DA-CF-AE-FF", status: 1, type:"DDOS" },
+        ],
+        rowFormatter: function(row) {
+            var data = row.getData();
+        
+            // status에 따라 배경색을 밝게 조정
+            if (data.status === 1) {
+                row.getElement().style.backgroundColor = "#ffcccc"; // status가 1이면 밝은 빨간색
+                row.getElement().style.color = "#990000";
+                row.getElement().style.fontWeight = "bold";
+            } else if (data.status === 0) {
+                row.getElement().style.backgroundColor = "#f0f0f0"; // status가 0이면 밝은 회색
+                row.getElement().style.color = "#333333"; // 어두운 텍스트
+            }
+        }
+    });
+
+
 });
 
 // 기본으로 시각화 탭 선택
@@ -85,3 +151,6 @@ function switchTab(tabId, contentId) {
     document.getElementById(tabId).classList.add('active');
     document.getElementById(contentId).classList.add('active');
 }
+
+//=======================================================================
+

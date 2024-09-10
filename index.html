@@ -3,9 +3,12 @@
     <meta charset="UTF-8">
 
     <title>Map Page</title>
-    
+    <link rel="stylesheet" href="/DataTables/datatables.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/tabulator-tables@6.2.5/dist/css/tabulator.min.css" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="map"></div>
@@ -32,14 +35,18 @@
             <canvas id="line_chart"></canvas>
         </div>
 
-        <div id="tab-content2" class="tab-content" style="display: none;">
-            <h2>Hello World</h2>
+        <div id="tab-content2" class="tab-content">
+            <div id="example-table"></div>
         </div>
 
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.5/dist/js/tabulator.min.js"></script>
+
+
     <script src="mapConfig.js"></script>
     <script src="sidebar.js"></script>
     <script src="chartConfig.js"></script>

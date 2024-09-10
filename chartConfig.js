@@ -41,9 +41,9 @@ function showdoughnutChart(markerKey){
             label: 'data',
             data: deviceData[markerKey].doughnutData,
             backgroundColor: [
-                '#4B0082',  // 인디고
-                '#4682B4',  // 스틸 블루
-                '#708090'   // 슬레이트 그레이
+                '#FF9999',  // 밝은 빨강
+                '#99CCFF',  // 밝은 파랑
+                '#FFD700'   // 금색
             ],
         hoverOffset: 4,
         }]
@@ -62,14 +62,14 @@ function showdoughnutChart(markerKey){
                     font: {
                         size: 20,
                     },
-                    color: '#e0e0e0'
+                    color: '#333333'
                 },
                 legend:{
                     display: true,
                     position: 'bottom',
                     color: '#e0e0e0',
                     labels:{
-                        color: '#e0e0e0'
+                        color: '#333333'
                     }
                 }
             }
@@ -86,9 +86,9 @@ function showPieChart(markerKey) {
             label: 'Pie Chart Data',
             data: deviceData[markerKey].doughnutData,
             backgroundColor: [
-                '#4B0082',  // 인디고
-                '#4682B4',  // 스틸 블루
-                '#708090'   // 슬레이트 그레이
+                '#FF9999',  // 밝은 빨강
+                '#99CCFF',  // 밝은 파랑
+                '#FFD700'   // 금색
             ],
             hoverOffset: 4
         }]
@@ -107,14 +107,13 @@ function showPieChart(markerKey) {
                     font:{
                         size: 20,
                     },
-                    color: '#e0e0e0'
                 },
                 legend:{
                     display:true,
                     position:"bottom",
                     color: '#e0e0e0',
                     labels:{
-                        color: '#e0e0e0'
+                        color: '#333333'
                     }
                 }
             }
@@ -131,13 +130,13 @@ function showLineChart(markerKey) {
             {
                 label: 'Data',
                 data: deviceData[markerKey].lineData,
-                borderColor: 'rgba(255, 255, 255, 0.9)',
+                borderColor: '#FF6347',
                 borderWidth: 2
             },
             {
                 label: 'Data2',
                 data: deviceData[markerKey].malLineData,
-                borderColor: 'rgba(200, 200, 200, 0.7)',
+                borderColor: '#4682B4',
                 borderWidth: 2
 
             }]
@@ -150,18 +149,18 @@ function showLineChart(markerKey) {
             scales: {
                 x: {
                     ticks: {
-                        color: '#e0e0e0'  // 흰색 텍스트
+                        color: '#333333'  
                     },
                     grid: {
-                        color: '#555'  // 중간 회색 그리드 라인
+                        color: '#cccccc'  
                     }
                 },
                 y: {
                     ticks: {
-                        color: '#e0e0e0'  // 흰색 텍스트
+                        color: '#333333' 
                     },
                     grid: {
-                        color: '#555'  // 중간 회색 그리드 라인
+                        color: '#cccccc'  
                     }
                 }
             },
@@ -172,13 +171,13 @@ function showLineChart(markerKey) {
                     font: {
                         size: 20,
                     },
-                    color: '#e0e0e0'
+                    color: '#333333'
                 },
                 legend: {
                     display: true,
                     position: 'bottom',
                     labels:{
-                        color: '#e0e0e0',
+                        color: '#333333',
                     }
                 }
             },
