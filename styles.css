@@ -15,7 +15,9 @@ html, body {
 .sidebar {
     width: 50%;
     height: 100%;
-    background: #f4f4f4;
+    /* background: #f4f4f4; */
+    background-color: #2b2b2b; /* 약간 부드러운 검정색 */
+    color: #e0e0e0; /* 부드러운 흰색 */
     position: absolute;
     right: 0;
     top: 0;
@@ -28,22 +30,79 @@ html, body {
     padding: 20px;
 }
 
-.close-btn {
-    cursor: pointer;
-    padding: 5px;
-    background: #ccc;
-    border-radius: 3px;
-    text-align: center;
-    width: 50px;
-}
-/* 
-#doughnut_chart, #pie_chart {
-    margin: 10px;
-    width: 200px;
-    height: 200px;
-} */
-/* 
-.canvas-wrapper {
+.header {
     display: flex;
     justify-content: space-between;
-} */
+    align-items: center;
+    padding: 10px;
+}
+
+#device_name {
+    margin: 0;
+    font-size: 30px;
+    text-align: right; /* 기기 이름을 오른쪽 정렬 */
+}
+
+
+.close-btn {
+    cursor: pointer;
+    /* background-color: rgb(255, 99, 132);
+    border: 1px solid rgb(255, 99, 132); */
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    /* color: white; */
+    background-color: #f0f0f0; /* 부드러운 흰색 */
+    color: #1c1c1e; /* 검정색 텍스트 */
+    border: 1px solid #333; /* 짙은 회색 테두리 */
+}
+
+#doughnut_chart_box {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;           
+    width: 100%;                   
+    margin-bottom: 20px;
+}
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%; /* 가로로 가득 채우기 */
+}
+
+.tab {
+    flex: 1; /* 각 탭이 동일한 비율로 가득 차도록 설정 */
+    padding: 10px 0; /* 수직 패딩 설정 */
+    text-align: center;
+    cursor: pointer;
+    /* background-color: #f4f4f4;
+    border: 1px solid lightgray;   */
+    /* border-bottom: 1px solid black; */
+    border-bottom: none; /* 아래쪽 테두리는 제거 */
+
+
+    background-color: #333; /* 짙은 회색 배경 */
+    color: #e0e0e0; /* 부드러운 흰색 텍스트 */
+    border: 1px solid #666; /* 옅은 회색 테두리 */
+    border-bottom: 2px solid #999; /* 기본적으로 옅은 테두리 */
+
+    border-top-left-radius: 15px; /* 왼쪽 상단 모서리 둥글게 */
+    border-top-right-radius: 15px; /* 오른쪽 상단 모서리 둥글게 */
+    transition: border-color 0.3s ease;
+}
+
+.tab.active {
+    background-color: #444; /* 활성화된 탭은 더 짙은 회색 */
+    border-color: #e0e0e0; /* 활성화된 탭의 테두리 */
+    border-bottom: none; /* 활성화된 탭은 아래쪽 선 제거 */
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}

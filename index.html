@@ -10,15 +10,32 @@
 <body>
     <div id="map"></div>
     <div class="sidebar" id="sidebar">
-        <div class="close-btn" id="closeBtn">Close</div>
-
-        <h2 id="device_name" ></h2> <!-- 기기 이름 넣기-->
-        
-        <div style="display: flex;"> <!-- justify-content: space-between; -->
-            <canvas id="doughnut_chart" ></canvas>
-            <canvas id="pie_chart" ></canvas> <!-- Pie 차트 추가 -->
+        <div class="header">
+            <div class="close-btn" id="closeBtn">X</div> <!-- 닫기 버튼 -->
+            <h1 id="device_name"></h1> <!-- 기기 이름 넣기 -->
         </div>
-        <canvas id="line_chart"></canvas>
+
+        
+        <div class="tab-container">
+            <button class="tab" id="tab1">시각화</button>
+            <button class="tab" id="tab2">로그</button>
+        </div>
+
+        
+        
+        <div id="tab-content1" class="tab-content">
+            <h2 id="device_name"></h2> <!-- 기기 이름 넣기 -->
+            <div id="doughnut_chart_box">
+                <canvas id="doughnut_chart"></canvas>
+                <canvas id="pie_chart"></canvas>
+            </div>
+            <canvas id="line_chart"></canvas>
+        </div>
+
+        <div id="tab-content2" class="tab-content" style="display: none;">
+            <h2>Hello World</h2>
+        </div>
+
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

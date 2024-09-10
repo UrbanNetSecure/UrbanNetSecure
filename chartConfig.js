@@ -27,6 +27,7 @@ let deviceData = {
     }
 }
 
+//=======================================================//
 function showdoughnutChart(markerKey){
     let ctx = document.getElementById('doughnut_chart').getContext('2d');
 
@@ -40,9 +41,9 @@ function showdoughnutChart(markerKey){
             label: 'data',
             data: deviceData[markerKey].doughnutData,
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#4B0082',  // 인디고
+                '#4682B4',  // 스틸 블루
+                '#708090'   // 슬레이트 그레이
             ],
         hoverOffset: 4,
         }]
@@ -54,7 +55,24 @@ function showdoughnutChart(markerKey){
         options: {
             responsive: false,
             maintainAspectRatio: false, 
-
+            plugins:{
+                title:{
+                    display: true,
+                    text: 'Attack Type',
+                    font: {
+                        size: 20,
+                    },
+                    color: '#e0e0e0'
+                },
+                legend:{
+                    display: true,
+                    position: 'bottom',
+                    color: '#e0e0e0',
+                    labels:{
+                        color: '#e0e0e0'
+                    }
+                }
+            }
         }
     });
 }
@@ -68,9 +86,9 @@ function showPieChart(markerKey) {
             label: 'Pie Chart Data',
             data: deviceData[markerKey].doughnutData,
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#4B0082',  // 인디고
+                '#4682B4',  // 스틸 블루
+                '#708090'   // 슬레이트 그레이
             ],
             hoverOffset: 4
         }]
@@ -81,7 +99,25 @@ function showPieChart(markerKey) {
         data: data,
         options: {
             responsive: false,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            plugins:{
+                title:{
+                    display:true,
+                    text:"TMP",
+                    font:{
+                        size: 20,
+                    },
+                    color: '#e0e0e0'
+                },
+                legend:{
+                    display:true,
+                    position:"bottom",
+                    color: '#e0e0e0',
+                    labels:{
+                        color: '#e0e0e0'
+                    }
+                }
+            }
         }
     });
 }
@@ -95,13 +131,14 @@ function showLineChart(markerKey) {
             {
                 label: 'Data',
                 data: deviceData[markerKey].lineData,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                borderColor: 'rgba(255, 255, 255, 0.9)',
+                borderWidth: 2
             },
             {
                 label: 'Data2',
                 data: deviceData[markerKey].malLineData,
-                borderWidth: 1
+                borderColor: 'rgba(200, 200, 200, 0.7)',
+                borderWidth: 2
 
             }]
     }
@@ -110,6 +147,41 @@ function showLineChart(markerKey) {
         type: 'line',
         data: data,
         options: {
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#e0e0e0'  // 흰색 텍스트
+                    },
+                    grid: {
+                        color: '#555'  // 중간 회색 그리드 라인
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#e0e0e0'  // 흰색 텍스트
+                    },
+                    grid: {
+                        color: '#555'  // 중간 회색 그리드 라인
+                    }
+                }
+            },
+            plugins:{
+                title:{
+                    display: true,
+                    text: 'TMP',
+                    font: {
+                        size: 20,
+                    },
+                    color: '#e0e0e0'
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels:{
+                        color: '#e0e0e0',
+                    }
+                }
+            },
             animation: {
                 duration: 1000, 
                 easing: 'easeInOutQuad' 
