@@ -1,19 +1,66 @@
-let chartUpdateInterval = undefined;
-let line_chart = undefined;
-let doughnut_chart = undefined;
-let pie_chart = undefined;
+let chartUpdateInterval=false;
+let line_chart=false;
+let doughnut_chart=false;
+let pie_chart=false;
+
 
 let defaultLineData = [0, 0, 0, 0, 0, 0, 0];
-let defaultMalLineData = [1, 1, 1, 1, 0, 1, 0];
-let defaultDoughnutData = [1, 2, 3];
-let defaultPieData = [1,2,3];
+let defaultMalLineData = [0, 0, 0, 0, 0, 0, 0];
+let defaultDoughnutData = [1,1,1,1];
+let defaultPieData = [1,1];
+
+let updateLineData =[0, 0, 0, 0, 0, 0, 0] ;
+let updateMalLineData = [0, 0, 0, 0, 0, 0, 0];
+let updateDoughnutData = [1,1,1,1];
+let updatePieData = [1,1];
+
+const chart_socket = io('http://localhost:3001/api/control', {
+    transports: ['websocket']
+  });
+
+chart_socket.on('connect', () => {
+    console.log('connected!');
+    chart_socket.emit('$logData', { serialNo: 'F234c1' });
+
+});
+chart_socket.on('%logData', (data) => {
+    console.log("return log data");
+    console.log(data.graph)
+    UpdateChartData(data);
+    // console.log(data);
+    // console.log(data.graph[0].nonAttackCnt)
+});
+
+//============================================================
+
+
+
+function UpdateChartData(data){
+    //Line Data
+    for (i=0; i <= updateLineData.length; i++){
+        updateLineData[i] = data.graph[i].nonAttackCnt;
+        updateMalLineData[i] = data.graph[i].attackCnt;
+    }
+    console.log('line comple')
+    //Doughnut Data
+    for (i=0; i<= updateDoughnutData.length; i++){
+        updateDoughnutData[i] = data.donut[i].count;
+    }
+    console.log('doughnut comple')
+    //Pie Data
+    updatePieData[0] = data.frequency.attackPercentage;
+    updatePieData[1] = data.frequency.nonAttackPercentage;
+    console.log('pie comple')
+}
 
 
 let deviceData = {
     bexco : {
-        lineData : defaultLineData,
-        doughnutData : defaultDoughnutData,
-        malLineData : defaultMalLineData
+        lineData : updateLineData,
+        pieData : updatePieData,
+        doughnutData : updateDoughnutData,
+        malLineData : updateMalLineData
+
     },
     test1 : {
         lineData : defaultLineData,
@@ -28,6 +75,7 @@ let deviceData = {
 }
 
 //=======================================================//
+
 function showdoughnutChart(markerKey){
     let ctx = document.getElementById('doughnut_chart').getContext('2d');
 
@@ -125,7 +173,7 @@ function showLineChart(markerKey) {
     let ctx = document.getElementById('line_chart').getContext('2d');
 
     let data = {
-        labels: ['월', '화', '수', '목', '금', '토', '일'],
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [
             {
                 label: 'Data',
@@ -198,7 +246,7 @@ function startChartUpdate(markerKey) {
 
 function updateChartData(markerKey) {
 
-    sidebar_socket.emit('$logData',1);
+
     // let newLineData = generateRandomData(); 
     // let newMalLineData = generateRandomData(); 
     // deviceData[markerKey].lineData = newLineData; 

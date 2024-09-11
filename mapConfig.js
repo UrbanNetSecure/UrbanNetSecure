@@ -1,4 +1,6 @@
-let mapUpdateInterval=undefined; 
+let mapUpdateInterval=false; 
+
+
 
 // 기기 위치
 const bexco = [35.168396, 129.133445];
@@ -30,15 +32,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-// close 버튼 클릭 이벤트
-document.getElementById('closeBtn').onclick = function () {
-    document.getElementById('sidebar').style.display = 'none';
-    clearInterval(chartUpdateInterval); 
-    if (sidebar_socket){
-        sidebar_socket.disconnect();
-        sidebar_socket= null;
-    }
-};
+
 
 //마커 생성
 let bexcoMarker = L.marker(bexco, {icon: defaultIcon}).addTo(map);
