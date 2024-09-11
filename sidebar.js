@@ -7,6 +7,13 @@ function onMarkerClick(markerKey) {
 
     showChart(markerKey);
     
+    if (!sidebar_socket){
+        sidebar_socket = io("http://localhost:3001/api/control", {
+            transports: ['websocket']
+        });
+        
+    }
+    
 }
 
 function showChart(markerKey){

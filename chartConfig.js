@@ -3,10 +3,10 @@ let line_chart = null;
 let doughnut_chart = null;
 let pie_chart = null;
 
-let defaultLineData = [0, 1, 0, 5, 0, 3, 2];
-let defaultMalLineData = [1, 5, 2, 6, 5, 8, 3];
+let defaultLineData = [0, 0, 0, 0, 0, 0, 0];
+let defaultMalLineData = [1, 1, 1, 1, 0, 1, 0];
 let defaultDoughnutData = [1, 2, 3];
-let testLineData = [10,20,30,40,50,60,70];
+let defaultPieData = [1,2,3];
 
 
 let deviceData = {
@@ -16,7 +16,7 @@ let deviceData = {
         malLineData : defaultMalLineData
     },
     test1 : {
-        lineData : testLineData,
+        lineData : defaultLineData,
         doughnutData : defaultDoughnutData,
         malLineData : defaultMalLineData
     },
@@ -125,7 +125,7 @@ function showLineChart(markerKey) {
     let ctx = document.getElementById('line_chart').getContext('2d');
 
     let data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['월', '화', '수', '목', '금', '토', '일'],
         datasets: [
             {
                 label: 'Data',
@@ -197,27 +197,25 @@ function startChartUpdate(markerKey) {
 }
 
 function updateChartData(markerKey) {
-    let newLineData = generateRandomData(); 
-    let newMalLineData = generateRandomData(); 
-    deviceData[markerKey].lineData = newLineData; 
-    deviceData[markerKey].malLineData = newMalLineData; 
 
-    line_chart.data.datasets[0].data = deviceData[markerKey].lineData; 
-    line_chart.data.datasets[1].data = deviceData[markerKey].malLineData; 
-    line_chart.update();
+    sidebar_socket.emit('$logData',1);
+    // let newLineData = generateRandomData(); 
+    // let newMalLineData = generateRandomData(); 
+    // deviceData[markerKey].lineData = newLineData; 
+    // deviceData[markerKey].malLineData = newMalLineData; 
 
-    let newDoughnutData = genRandData(); 
-    deviceData[markerKey].doughnutData = newDoughnutData; 
+    // line_chart.data.datasets[0].data = deviceData[markerKey].lineData; 
+    // line_chart.data.datasets[1].data = deviceData[markerKey].malLineData; 
+    // line_chart.update();
+
+    // let newDoughnutData = genRandData(); 
+    // deviceData[markerKey].doughnutData = newDoughnutData; 
     
-    doughnut_chart.data.datasets[0].data = deviceData[markerKey].doughnutData;
-    doughnut_chart.update(); 
+    // doughnut_chart.data.datasets[0].data = deviceData[markerKey].doughnutData;
+    // doughnut_chart.update(); 
 }
 
-// close 버튼 클릭 이벤트
-document.getElementById('closeBtn').onclick = function () {
-    document.getElementById('sidebar').style.display = 'none';
-    clearInterval(chartUpdateInterval); 
-};
+
 
 function generateRandomData() {
     // 랜덤 데이터를 생성하는 함수 (예시)

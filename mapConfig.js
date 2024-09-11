@@ -1,8 +1,9 @@
+let mapUpdateInterval; 
+
 // 기기 위치
 const bexco = [35.168396, 129.133445];
 const test1 = [35.168390, 129.130000];
 const test2 = [35.167000, 129.130500];
-
 
 // 아이콘 설정
 const iconSize = [80, 80];
@@ -28,19 +29,30 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, minZoom: 14
 }).addTo(map);
 
+
+// close 버튼 클릭 이벤트
+document.getElementById('closeBtn').onclick = function () {
+    document.getElementById('sidebar').style.display = 'none';
+    clearInterval(chartUpdateInterval); 
+    if (sidebar_socket){
+        sidebar_socket.disconnect();
+        sidebar_socket= null;
+    }
+};
+
 //마커 생성
 let bexcoMarker = L.marker(bexco, {icon: defaultIcon}).addTo(map);
 let test1Marker = L.marker(test1, {icon: defaultIcon}).addTo(map);
 let test2Marker = L.marker(test2, {icon: defaultIcon}).addTo(map);
 
 // 지도의 실시간 업데이트
-let mapUpdateInterval; 
 
 function startMapUpdate() {
     mapUpdateInterval = setInterval(function () {
         updateMap(); 
     }, 1000);
 }
+
 
 function updateMap() {
     // 지도에 대한 업데이트를 여기서 수행 
@@ -78,6 +90,9 @@ function updateMap() {
 
 // 초기화 시 지도 업데이트 시작
 startMapUpdate();
+
+
+
 
 
 
