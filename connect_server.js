@@ -1,5 +1,5 @@
-let sidebar_socket= null;
-let map_socket = null;
+let sidebar_socket = io("http://localhost:3001");
+let map_socket = undefined;
 
 sidebar_socket.on('connect', () => {
 
@@ -11,11 +11,12 @@ sidebar_socket.on('connect', () => {
     })
 })
 
-if (!map_socket){
-    map_socket = io("http://localhost:3001/api/control", {
-        transports: ['websocket']
-    });
-}
+sidebar_socket.emit('$logData');
+// if (!map_socket){
+//     map_socket = io("http://localhost:3001/api/control", {
+//         transports: ['websocket']
+//     });
+// }
 
 function UpdateLineChart(data, markerKey){
     deviceData[markerKey].lineData = data.graph.map((d) => d.status);
@@ -27,7 +28,7 @@ function UpdateLineChart(data, markerKey){
 }
 
 function UpdateDoughnutChart(data, markerKey){
-    deviceData[markerKey].doughnutData = Object.values(data.donut).map((d) => d.count);
+    deviceData[markerKey].doughnutData = data.donut.Socket.count
 
     doughnut_chart.data.datasets[0].data = deviceData[markerKey].doughnutData;
     doughnut_chart.update();

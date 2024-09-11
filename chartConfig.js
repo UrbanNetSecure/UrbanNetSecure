@@ -1,7 +1,7 @@
-let chartUpdateInterval = null;
-let line_chart = null;
-let doughnut_chart = null;
-let pie_chart = null;
+let chartUpdateInterval = undefined;
+let line_chart = undefined;
+let doughnut_chart = undefined;
+let pie_chart = undefined;
 
 let defaultLineData = [0, 0, 0, 0, 0, 0, 0];
 let defaultMalLineData = [1, 1, 1, 1, 0, 1, 0];

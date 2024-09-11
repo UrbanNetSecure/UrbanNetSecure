@@ -1,4 +1,4 @@
-let currentMarkerKey = null;
+let currentMarkerKey = undefined;
 let dataTableInitialized = false;
 
 const dataSet = {

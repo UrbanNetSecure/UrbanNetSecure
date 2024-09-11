@@ -1,4 +1,4 @@
-let mapUpdateInterval; 
+let mapUpdateInterval=undefined; 
 
 // 기기 위치
 const bexco = [35.168396, 129.133445];
